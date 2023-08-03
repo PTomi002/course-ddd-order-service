@@ -1,0 +1,9 @@
+rootProject.name = 'order-service'
+
+include 'order-application'
+include 'order-dataaccess'
+include 'order-messaging'
+include 'order-container'
+include 'order-domain:order-application-service'
+include 'order-domain:order-domain-core'
+

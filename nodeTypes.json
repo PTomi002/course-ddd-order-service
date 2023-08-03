@@ -1,0 +1,44 @@
+[
+  {
+    "name": "order-application",
+    "regex": "^:.*order-application.*$",
+    "isEnabled": true,
+    "shape": "ellipse",
+    "fillColor": "#BAFFC9"
+  },
+  {
+    "name": "order-messaging",
+    "regex": "^:.*order-messaging.*$",
+    "isEnabled": true,
+    "shape": "ellipse",
+    "fillColor": "#BAFFC9"
+  },
+  {
+    "name": "order-container",
+    "regex": "^.*order-container.*$",
+    "isEnabled": true,
+    "shape": "ellipse",
+    "fillColor": "#E6F98A"
+  },
+  {
+    "name": "order-dataaccess",
+    "regex": "^.*order-dataaccess.*$",
+    "isEnabled": true ,
+    "shape": "ellipse",
+    "fillColor": "#8AD8F9"
+  },
+  {
+    "name": "order-application-service",
+    "regex": "^.*order-application-service.*$",
+    "isEnabled": true,
+    "shape": "ellipse",
+    "fillColor": "#FFACFA"
+  },
+  {
+    "name": "order-domain-core",
+    "regex": "^.*order-domain-core.*$",
+    "isEnabled": true,
+    "shape": "ellipse",
+    "fillColor": "#D5625A"
+  }
+]

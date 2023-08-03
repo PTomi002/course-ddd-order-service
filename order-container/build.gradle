@@ -1,0 +1,19 @@
+plugins {
+    id "org.springframework.boot" version "2.1.7.RELEASE"
+}
+
+apply plugin: 'org.springframework.boot'
+
+bootJar {
+    archiveFileName = "${rootProject.name}-${project.version}.${archiveExtension.get()}"
+}
+
+dependencies {
+    implementation project(':order-application')
+    implementation project(':order-dataaccess')
+    implementation project(':order-domain:order-application-service')
+    implementation project(':order-domain:order-domain-core')
+    implementation project(':order-messaging')
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
