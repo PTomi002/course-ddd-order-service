@@ -3,6 +3,7 @@ plugins {
     id "com.github.ivancarras.graphfity" version "1.0.0"
 }
 
+// https://androidexample365.com/a-gradle-plugin-which-creates-a-dependency-node-diagram-graph-about-your-internal-modules-dependencies/#about-the-project
 apply plugin: com.github.ivancarras.graphfity.plugin.main.GraphfityPlugin
 
 graphfityExtension {
