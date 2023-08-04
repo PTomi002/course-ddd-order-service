@@ -15,7 +15,7 @@
   },
   {
     "name": "order-container",
-    "regex": "^.*order-container.*$",
+    "regex": "^.*.order-container.*$",
     "isEnabled": true,
     "shape": "ellipse",
     "fillColor": "#E6F98A"
@@ -23,7 +23,7 @@
   {
     "name": "order-dataaccess",
     "regex": "^.*order-dataaccess.*$",
-    "isEnabled": true ,
+    "isEnabled": true,
     "shape": "ellipse",
     "fillColor": "#8AD8F9"
   },
@@ -37,6 +37,13 @@
   {
     "name": "order-domain-core",
     "regex": "^.*order-domain-core.*$",
+    "isEnabled": true,
+    "shape": "ellipse",
+    "fillColor": "#D5625A"
+  },
+  {
+    "name": "common-domain",
+    "regex": "^.*common-domain.*$",
     "isEnabled": true,
     "shape": "ellipse",
     "fillColor": "#D5625A"

@@ -1,0 +1,5 @@
+dependencies {
+
+    implementation project(":order-service:order-domain:order-application-service")
+
+}
