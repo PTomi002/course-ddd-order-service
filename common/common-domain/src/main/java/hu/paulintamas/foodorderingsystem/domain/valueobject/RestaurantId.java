@@ -1,8 +1,6 @@
 package hu.paulintamas.foodorderingsystem.domain.valueobject;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 

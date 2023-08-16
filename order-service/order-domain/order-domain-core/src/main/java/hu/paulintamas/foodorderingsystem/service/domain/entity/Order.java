@@ -24,6 +24,8 @@ public class Order extends AggregateRoot<OrderId> {
     private StreetAddress streetAddress;
     private Money price;
     private List<OrderItem> orderItems;
+
+    // below set by business rules in the domain service
     private TrackingId trackingId;
     private OrderStatus orderStatus;
     private List<String> errors;

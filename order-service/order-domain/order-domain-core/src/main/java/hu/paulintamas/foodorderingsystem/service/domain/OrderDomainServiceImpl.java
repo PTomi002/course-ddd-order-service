@@ -12,6 +12,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * [KNOWLEDGE]
+ * Anemic vs Rich Domain Model
+ * TBD.
+ */
 @RequiredArgsConstructor
 public class OrderDomainServiceImpl implements OrderDomainService {
 

@@ -16,6 +16,8 @@ import java.util.List;
  * DomainEvents should be created in the domain core.
  * <p>
  * Application layer should not call directly the domain models instead the services.
+ * <p>
+ * Domain Service methods could be matched to the Use Cases / Features.
  */
 public interface OrderDomainService {
     OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant);
