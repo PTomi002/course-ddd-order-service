@@ -19,7 +19,7 @@ import java.util.UUID;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class OrderCreateHelper {
+class OrderCreateHelper {
     private final OrderDomainService orderDomainService;
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;

@@ -4,6 +4,8 @@ import hu.paulintamas.foodorderingsystem.domain.valueobject.*;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.CreateOrderCommand;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.CreateOrderResponse;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.OrderAddress;
+import hu.paulintamas.foodorderingsystem.service.domain.dto.track.TrackOrderQuery;
+import hu.paulintamas.foodorderingsystem.service.domain.dto.track.TrackOrderResponse;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Order;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.OrderItem;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Product;
@@ -51,10 +53,19 @@ public class OrderDataMapper {
                 .build();
     }
 
-    public CreateOrderResponse orderToCreateOrderResponse(Order order) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order, String message) {
         return CreateOrderResponse.builder()
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
+                .message(message)
+                .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order){
+        return TrackOrderResponse.builder()
+                .orderStatus(order.getOrderStatus())
+                .failureMessages(order.getErrors())
+                .orderTrackingId(order.getTrackingId().getValue())
                 .build();
     }
 

@@ -36,4 +36,13 @@ subprojects {
         }
     }
 
+    test {
+        useJUnitPlatform()
+    }
+
+    dependencies {
+        testImplementation 'org.mockito:mockito-core'
+    }
+
 }
+
