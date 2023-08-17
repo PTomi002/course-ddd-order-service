@@ -26,6 +26,7 @@ public class OrderCreateCommandHandler {
     private final CustomerRepository customerRepository;
     private final RestaurantRepository restaurantRepository;
     private final OrderDataMapper orderDataMapper;
+    private final ApplicationDomainEventPublisher applicationDomainEventPublisher;
 
     /**
      * [KNOWLEDGE]
@@ -45,6 +46,7 @@ public class OrderCreateCommandHandler {
         var savedOrder = saveOrder(order);
 
         log.info("Order is created with id: {}", savedOrder.getId().getValue());
+        applicationDomainEventPublisher.publish(orderCreatedDomainEvent);
         return orderDataMapper.orderToCreateOrderResponse(order);
     }
 
