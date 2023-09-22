@@ -1,0 +1,14 @@
+plugins {
+    id "com.github.davidmc24.gradle.plugin.avro" version "1.8.0"
+}
+
+avro {
+    stringType = "String"
+    enableDecimalLogicalType = true
+}
+
+dependencies {
+
+    implementation "org.apache.avro:avro:$rootProject.avroVersion"
+
+}
