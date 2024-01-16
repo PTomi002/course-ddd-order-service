@@ -2,6 +2,7 @@ rootProject.name = 'food-ordering-system'
 
 // COMMON LIB
 include 'common:common-domain'
+include 'common:common-application'
 
 // ORDER SERVICE
 include 'order-service:order-application'
@@ -16,4 +17,3 @@ include 'infrastructure:kafka:kafka-consumer'
 include 'infrastructure:kafka:kafka-model'
 include 'infrastructure:kafka:kafka-producer'
 include 'infrastructure:kafka:kafka-config-data'
-

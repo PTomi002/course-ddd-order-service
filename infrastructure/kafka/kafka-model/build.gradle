@@ -9,6 +9,6 @@ avro {
 
 dependencies {
 
-    implementation "org.apache.avro:avro:$rootProject.avroVersion"
+    api "org.apache.avro:avro:$rootProject.avroVersion"
 
 }

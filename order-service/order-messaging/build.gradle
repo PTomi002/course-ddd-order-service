@@ -1,5 +1,9 @@
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
 
-    implementation project(":order-service::order-domain:order-application-service")
-
+    api project(':infrastructure:kafka:kafka-consumer')
+    api project(':infrastructure:kafka:kafka-model')
+    api project(':infrastructure:kafka:kafka-producer')
+    api project(':infrastructure:kafka:kafka-config-data')
+    api project(":order-service:order-domain:order-application-service")
 }
