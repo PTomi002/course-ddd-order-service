@@ -17,7 +17,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     public Optional<Restaurant> findRestaurantInformation(Restaurant restaurant) {
         var restaurantProducts = restaurantDataAccessMapper.restaurantTorRestaurantProducts(restaurant);
-        var restaurantEntities = restaurantJpaRepository.findByRestaurantIdAndProductId(restaurant.getId().getValue(), restaurantProducts);
+        var restaurantEntities = restaurantJpaRepository.findByRestaurantIdAndProductIdIn(restaurant.getId().getValue(), restaurantProducts);
         return restaurantEntities.map(restaurantDataAccessMapper::restaurantEntityToRestaurant);
     }
 }
