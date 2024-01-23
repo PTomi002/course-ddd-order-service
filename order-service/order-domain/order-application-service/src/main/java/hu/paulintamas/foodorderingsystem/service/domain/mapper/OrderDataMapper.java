@@ -4,7 +4,6 @@ import hu.paulintamas.foodorderingsystem.domain.valueobject.*;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.CreateOrderCommand;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.CreateOrderResponse;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.OrderAddress;
-import hu.paulintamas.foodorderingsystem.service.domain.dto.track.TrackOrderQuery;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.track.TrackOrderResponse;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Order;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.OrderItem;
@@ -31,7 +30,7 @@ public class OrderDataMapper {
         return Restaurant.builder()
                 .id(RestaurantId.builder().value(createOrderCommand.getRestaurantId()).build())
                 .products(
-                        createOrderCommand.getOrderItems()
+                        createOrderCommand.getItems()
                                 .stream()
                                 .map(orderItem ->
                                         Product.builder()
@@ -49,7 +48,7 @@ public class OrderDataMapper {
                 .restaurantId(RestaurantId.builder().value(createOrderCommand.getRestaurantId()).build())
                 .streetAddress(orderAddressToStreetAddress(createOrderCommand.getAddress()))
                 .price(Money.of(createOrderCommand.getPrice()))
-                .orderItems(orderItemsToOrderItemEntities(createOrderCommand.getOrderItems()))
+                .orderItems(orderItemsToOrderItemEntities(createOrderCommand.getItems()))
                 .build();
     }
 

@@ -55,7 +55,7 @@ public class TestDataHelper {
                 .restaurantId(RESTAURANT_ID_ONE)
                 .address(createOrderAddress(POSTAL_CODE_ONE, CITY_ONE, STREET_ONE))
                 .price(ORDER_PRICE_200)
-                .orderItems(List.of(
+                .items(List.of(
                         createOrderItem(PRODUCT_ID_ONE, ITEM_PRICE_50, SUBTOTAL_150, QUANTITY_3),
                         createOrderItem(PRODUCT_ID_ONE, ITEM_PRICE_50, SUBTOTAL_50, QUANTITY_1)
                 ))
@@ -68,7 +68,7 @@ public class TestDataHelper {
                 .restaurantId(RESTAURANT_ID_ONE)
                 .address(createOrderAddress(POSTAL_CODE_ONE, CITY_ONE, STREET_ONE))
                 .price(ORDER_PRICE_250)
-                .orderItems(List.of(
+                .items(List.of(
                         createOrderItem(PRODUCT_ID_ONE, ITEM_PRICE_50, SUBTOTAL_150, QUANTITY_3),
                         createOrderItem(PRODUCT_ID_ONE, ITEM_PRICE_50, SUBTOTAL_50, QUANTITY_1)
                 ))
@@ -81,7 +81,7 @@ public class TestDataHelper {
                 .restaurantId(RESTAURANT_ID_ONE)
                 .address(createOrderAddress(POSTAL_CODE_ONE, CITY_ONE, STREET_ONE))
                 .price(ORDER_PRICE_210)
-                .orderItems(List.of(
+                .items(List.of(
                         createOrderItem(PRODUCT_ID_ONE, ITEM_PRICE_50, SUBTOTAL_150, QUANTITY_3),
                         createOrderItem(PRODUCT_ID_ONE, ITEM_PRICE_60, SUBTOTAL_60, QUANTITY_1)
                 ))

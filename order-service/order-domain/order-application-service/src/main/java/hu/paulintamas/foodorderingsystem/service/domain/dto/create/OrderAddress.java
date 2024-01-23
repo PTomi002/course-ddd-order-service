@@ -2,11 +2,12 @@ package hu.paulintamas.foodorderingsystem.service.domain.dto.create;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
-@Value
+@Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderAddress {
     @NotNull
     @Max(value = 50)

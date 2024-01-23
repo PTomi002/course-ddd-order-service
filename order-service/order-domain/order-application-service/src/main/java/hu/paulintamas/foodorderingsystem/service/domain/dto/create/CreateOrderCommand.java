@@ -1,15 +1,16 @@
 package hu.paulintamas.foodorderingsystem.service.domain.dto.create;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-@Value
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateOrderCommand {
     @NotNull
     UUID customerId;
@@ -18,7 +19,7 @@ public class CreateOrderCommand {
     @NotNull
     BigDecimal price;
     @NotNull
-    List<OrderItem> orderItems;
+    List<OrderItem> items;
     @NotNull
     OrderAddress address;
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,7 +30,7 @@ public class OrderDataAccessMapper {
                 .price(order.getPrice().getAmount())
                 .items(orderItemstToOrderItemEntities(order.getOrderItems()))
                 .orderStatus(order.getOrderStatus())
-                .failureMessages(String.join(",", order.getErrors()))
+                .failureMessages(Objects.isNull(order.getErrors()) ? "" : String.join(",", order.getErrors()))
                 .build();
         orderEntity.getAddress().setOrder(orderEntity);
         orderEntity.getItems().forEach(orderItemEntity -> orderItemEntity.setOrder(orderEntity));

@@ -17,3 +17,6 @@ include 'infrastructure:kafka:kafka-consumer'
 include 'infrastructure:kafka:kafka-model'
 include 'infrastructure:kafka:kafka-producer'
 include 'infrastructure:kafka:kafka-config-data'
+
+// CUSTOMER SERVICE
+include 'customer-service'
