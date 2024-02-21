@@ -1,0 +1,24 @@
+package hu.paulintamas.foodorderingsystem.payment.service.domain.event;
+
+import hu.paulintamas.foodorderingsystem.domain.event.publisher.DomainEventPublisher;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
+
+import static lombok.AccessLevel.PRIVATE;
+
+@Getter
+@SuperBuilder
+@FieldDefaults(makeFinal = true, level = PRIVATE)
+public class PaymentCancelledEvent extends PaymentEvent {
+
+    /**
+     * [KNOWLEDGE-REFACTOR] Should not implement fire() event in the domain-core package, because app domain module shoot the DomainEvent(s), domain core only creates them.
+     */
+    private final DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher;
+
+    @Override
+    public void fire() {
+        paymentCancelledEventDomainEventPublisher.publish(this);
+    }
+}

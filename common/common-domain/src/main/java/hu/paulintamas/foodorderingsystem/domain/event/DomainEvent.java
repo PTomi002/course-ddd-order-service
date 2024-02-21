@@ -10,5 +10,8 @@ package hu.paulintamas.foodorderingsystem.domain.event;
  * Domain events are an excellent way of achieving eventual consistency, for strong consistency use direct method calls.
  */
 public interface DomainEvent<T> {
-
+    /**
+     * [KNOWLEDGE-REFACTOR] Add fire in the base class.
+     */
+    void fire();
 }

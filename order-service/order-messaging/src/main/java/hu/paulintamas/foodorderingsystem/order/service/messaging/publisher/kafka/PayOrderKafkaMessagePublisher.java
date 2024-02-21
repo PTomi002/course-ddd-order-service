@@ -1,6 +1,7 @@
 package hu.paulintamas.foodorderingsystem.order.service.messaging.publisher.kafka;
 
 import hu.paulintamas.foodorderingsystem.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
+import hu.paulintamas.foodorderingsystem.kafka.producer.KafkaMessageHelper;
 import hu.paulintamas.foodorderingsystem.kafka.producer.service.KafkaProducer;
 import hu.paulintamas.foodorderingsystem.order.service.messaging.mapper.OrderMessagingDataMapper;
 import hu.paulintamas.foodorderingsystem.service.domain.config.OrderServiceConfigData;
@@ -17,7 +18,7 @@ public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantMessage
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final OrderServiceConfigData orderServiceConfigData;
     private final KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer;
-    private final OrderKafkaMessageHelper orderKafkaMessageHelper;
+    private final KafkaMessageHelper kafkaMessageHelper;
 
     @Override
     public void publish(OrderPaidEvent domainEvent) {
@@ -29,7 +30,7 @@ public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantMessage
                     orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
                     orderId,
                     restaurantApprovalRequestAvroModel,
-                    orderKafkaMessageHelper.getKafkaCallback(orderServiceConfigData.getRestaurantApprovalRequestTopicName(), restaurantApprovalRequestAvroModel, orderId, "RestaurantApprovalRequestAvroModel")
+                    kafkaMessageHelper.getKafkaCallback(orderServiceConfigData.getRestaurantApprovalRequestTopicName(), restaurantApprovalRequestAvroModel, orderId, "RestaurantApprovalRequestAvroModel")
             );
 
             log.info("RestaurantApprovalRequestAvroModel sent to kafka for order id: {}", orderId);

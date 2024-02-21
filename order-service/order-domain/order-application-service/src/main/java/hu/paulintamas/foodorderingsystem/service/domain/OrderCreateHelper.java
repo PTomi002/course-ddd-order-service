@@ -6,6 +6,7 @@ import hu.paulintamas.foodorderingsystem.service.domain.entity.Restaurant;
 import hu.paulintamas.foodorderingsystem.service.domain.event.OrderCreatedEvent;
 import hu.paulintamas.foodorderingsystem.service.domain.exception.OrderDomainException;
 import hu.paulintamas.foodorderingsystem.service.domain.mapper.OrderDataMapper;
+import hu.paulintamas.foodorderingsystem.service.domain.ports.output.messagepublisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import hu.paulintamas.foodorderingsystem.service.domain.ports.output.repository.CustomerRepository;
 import hu.paulintamas.foodorderingsystem.service.domain.ports.output.repository.OrderRepository;
 import hu.paulintamas.foodorderingsystem.service.domain.ports.output.repository.RestaurantRepository;
@@ -25,6 +26,7 @@ class OrderCreateHelper {
     private final CustomerRepository customerRepository;
     private final RestaurantRepository restaurantRepository;
     private final OrderDataMapper orderDataMapper;
+    private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;
 
     @Transactional
     public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
@@ -33,7 +35,7 @@ class OrderCreateHelper {
         var restaurant = checkRestaurant(createOrderCommand);
         var order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
 
-        var orderCreatedDomainEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
+        var orderCreatedDomainEvent = orderDomainService.validateAndInitiateOrder(order, restaurant, orderCreatedPaymentRequestMessagePublisher);
         var savedOrder = saveOrder(order);
 
         log.info("Order is created with id: {}", savedOrder.getId().getValue());

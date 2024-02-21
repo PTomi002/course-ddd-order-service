@@ -1,4 +1,4 @@
-package hu.paulintamas.foodorderingsystem.order.service.messaging.publisher.kafka;
+package hu.paulintamas.foodorderingsystem.kafka.producer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.support.SendResult;
@@ -10,7 +10,7 @@ import static java.util.Objects.isNull;
 
 @Slf4j
 @Component
-public class OrderKafkaMessageHelper {
+public class KafkaMessageHelper {
 
     public <T> BiConsumer<SendResult<String, T>, Throwable> getKafkaCallback(String topicName, T model, String orderId, String modelName) {
         return (result, error) -> {
