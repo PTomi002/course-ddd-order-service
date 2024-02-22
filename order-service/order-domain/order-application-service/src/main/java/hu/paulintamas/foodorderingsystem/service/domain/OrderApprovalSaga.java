@@ -16,7 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
  *  - Order is also APPROVED from the restaurant side -> the flow is finished, or rollback with cancel event.
  * Impl. Details:
  *  - @Transactional -> Want the DB to finish successfully first to be consistent with the eventing out.
- *  - BUT even now the publishing can fail and leaving the system in inconsistent state.  -> Adding Outbox pattern next to Saga pattern.
+ *  - BUT even now the publishing can fail and leaving the system in inconsistent state.
+ *      What we con do now?
+ *          (1) Retry for message subsystem producer and consumer to handle mostly network errors and use the idempotentKey for consumers.
+ *          (2) [KNOWLEDGE-OUTBOX] Adding Outbox pattern next to Saga pattern.
  */
 @Slf4j
 @Component
