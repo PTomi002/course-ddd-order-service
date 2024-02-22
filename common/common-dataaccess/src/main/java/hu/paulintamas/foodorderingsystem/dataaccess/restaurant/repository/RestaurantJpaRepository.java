@@ -1,7 +1,7 @@
-package hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.repository;
+package hu.paulintamas.foodorderingsystem.dataaccess.restaurant.repository;
 
-import hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.entity.RestaurantEntity;
-import hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.entity.RestaurantEntityId;
+import hu.paulintamas.foodorderingsystem.dataaccess.restaurant.entity.RestaurantEntity;
+import hu.paulintamas.foodorderingsystem.dataaccess.restaurant.entity.RestaurantEntityId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

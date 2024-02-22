@@ -3,6 +3,13 @@ rootProject.name = 'food-ordering-system'
 // COMMON LIB
 include 'common:common-domain'
 include 'common:common-application'
+include 'common:common-dataaccess'
+
+// INFRA
+include 'infrastructure:kafka:kafka-consumer'
+include 'infrastructure:kafka:kafka-model'
+include 'infrastructure:kafka:kafka-producer'
+include 'infrastructure:kafka:kafka-config-data'
 
 // CUSTOMER SERVICE
 include 'customer-service'
@@ -14,6 +21,13 @@ include 'payment-service:payment-container'
 include 'payment-service:payment-domain:payment-application-service'
 include 'payment-service:payment-domain:payment-domain-core'
 
+// PAYMENT SERVICE
+include 'restaurant-service:restaurant-dataaccess'
+include 'restaurant-service:restaurant-messaging'
+include 'restaurant-service:restaurant-container'
+include 'restaurant-service:restaurant-domain:restaurant-application-service'
+include 'restaurant-service:restaurant-domain:restaurant-domain-core'
+
 // ORDER SERVICE
 include 'order-service:order-application'
 include 'order-service:order-dataaccess'
@@ -21,9 +35,3 @@ include 'order-service:order-messaging'
 include 'order-service:order-container'
 include 'order-service:order-domain:order-application-service'
 include 'order-service:order-domain:order-domain-core'
-
-// INFRA
-include 'infrastructure:kafka:kafka-consumer'
-include 'infrastructure:kafka:kafka-model'
-include 'infrastructure:kafka:kafka-producer'
-include 'infrastructure:kafka:kafka-config-data'

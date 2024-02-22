@@ -1,4 +1,4 @@
-package hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.exception;
+package hu.paulintamas.foodorderingsystem.dataaccess.restaurant.exception;
 
 import lombok.experimental.StandardException;
 

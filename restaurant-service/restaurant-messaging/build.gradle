@@ -1,0 +1,9 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    api project(':infrastructure:kafka:kafka-consumer')
+    api project(':infrastructure:kafka:kafka-model')
+    api project(':infrastructure:kafka:kafka-producer')
+    api project(':infrastructure:kafka:kafka-config-data')
+    api project(":restaurant-service:restaurant-domain:restaurant-application-service")
+}

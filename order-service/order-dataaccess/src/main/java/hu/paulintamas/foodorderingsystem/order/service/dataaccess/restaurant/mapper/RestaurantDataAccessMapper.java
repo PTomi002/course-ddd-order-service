@@ -1,10 +1,10 @@
 package hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.mapper;
 
+import hu.paulintamas.foodorderingsystem.dataaccess.restaurant.entity.RestaurantEntity;
+import hu.paulintamas.foodorderingsystem.dataaccess.restaurant.exception.RestaurantDataAccessException;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.Money;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.ProductId;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.RestaurantId;
-import hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.entity.RestaurantEntity;
-import hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.exception.RestaurantDataAccessException;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Product;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Restaurant;
 import org.springframework.stereotype.Component;

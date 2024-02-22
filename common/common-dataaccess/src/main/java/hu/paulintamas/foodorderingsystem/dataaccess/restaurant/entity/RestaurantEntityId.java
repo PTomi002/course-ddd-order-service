@@ -1,8 +1,5 @@
-package hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.entity;
+package hu.paulintamas.foodorderingsystem.dataaccess.restaurant.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.*;
 
 import java.util.Objects;

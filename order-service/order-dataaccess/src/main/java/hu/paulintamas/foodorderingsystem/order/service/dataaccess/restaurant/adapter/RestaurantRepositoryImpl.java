@@ -1,7 +1,7 @@
 package hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.adapter;
 
+import hu.paulintamas.foodorderingsystem.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
-import hu.paulintamas.foodorderingsystem.order.service.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Restaurant;
 import hu.paulintamas.foodorderingsystem.service.domain.ports.output.repository.RestaurantRepository;
 import lombok.AllArgsConstructor;
