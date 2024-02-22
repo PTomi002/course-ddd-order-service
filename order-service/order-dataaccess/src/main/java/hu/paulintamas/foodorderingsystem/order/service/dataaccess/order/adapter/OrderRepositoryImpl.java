@@ -1,5 +1,6 @@
 package hu.paulintamas.foodorderingsystem.order.service.dataaccess.order.adapter;
 
+import hu.paulintamas.foodorderingsystem.domain.valueobject.OrderId;
 import hu.paulintamas.foodorderingsystem.order.service.dataaccess.order.mapper.OrderDataAccessMapper;
 import hu.paulintamas.foodorderingsystem.order.service.dataaccess.order.repository.OrderJpaRepository;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Order;
@@ -29,6 +30,13 @@ public class OrderRepositoryImpl implements OrderRepository {
     public Optional<Order> findByTrackingId(TrackingId trackingId) {
         return orderJpaRepository
                 .findByTrackingId(trackingId.getValue())
+                .map(orderDataAccessMapper::orderEntityToOrder);
+    }
+
+    @Override
+    public Optional<Order> findyOrderId(OrderId orderId) {
+        return orderJpaRepository
+                .findById(orderId.getValue())
                 .map(orderDataAccessMapper::orderEntityToOrder);
     }
 }

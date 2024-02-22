@@ -42,7 +42,7 @@ public class RestaurantDomainServiceImpl implements RestaurantDomainService{
             return OrderRejectedEvent.builder()
                     .orderApproval(restaurant.getOrderApproval())
                     .restaurantId(restaurant.getId())
-                    .failureMessages(List.of())
+                    .failureMessages(failureMessages)
                     .createdAt(ZonedDateTime.now())
                     .orderRejectedEventDomainEventPublisher(orderRejectedEventDomainEventPublisher)
                     .build();

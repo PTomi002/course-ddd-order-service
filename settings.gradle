@@ -11,6 +11,9 @@ include 'infrastructure:kafka:kafka-model'
 include 'infrastructure:kafka:kafka-producer'
 include 'infrastructure:kafka:kafka-config-data'
 
+// SAGA
+include 'infrastructure:saga'
+
 // CUSTOMER SERVICE
 include 'customer-service'
 

@@ -13,6 +13,8 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Getter
 @Setter
@@ -76,7 +78,10 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void updateFailureMessages(final List<String> failureMessages) {
         if (errors != null && failureMessages != null) {
-            errors.addAll(failureMessages.stream().filter(message -> !message.isEmpty()).toList());
+            errors = Stream.concat(
+                errors.stream(),
+                    failureMessages.stream().filter(message -> !message.isEmpty())
+            ).collect(Collectors.toList());
         }
         if (errors == null) {
             errors = failureMessages;

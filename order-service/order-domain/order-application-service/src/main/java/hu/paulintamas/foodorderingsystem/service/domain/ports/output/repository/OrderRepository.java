@@ -1,5 +1,6 @@
 package hu.paulintamas.foodorderingsystem.service.domain.ports.output.repository;
 
+import hu.paulintamas.foodorderingsystem.domain.valueobject.OrderId;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Order;
 import hu.paulintamas.foodorderingsystem.service.domain.valueobject.TrackingId;
 
@@ -14,4 +15,6 @@ public interface OrderRepository {
     Order save(Order order);
 
     Optional<Order> findByTrackingId(TrackingId trackingId);
+
+    Optional<Order> findyOrderId(OrderId orderId);
 }
