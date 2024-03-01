@@ -21,13 +21,13 @@ import java.util.List;
  * Domain Service methods could be matched to the Use Cases / Features.
  */
 public interface OrderDomainService {
-    OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant, DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher);
+    OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restauran);
 
-    OrderPaidEvent payOrder(Order order, DomainEventPublisher<OrderPaidEvent> orderPaidEventDomainEventPublisher);
+    OrderPaidEvent payOrder(Order order);
 
     void approveOrder(Order order);
 
-    OrderCancelledEvent cancelOrderPayments(Order order, List<String> failureMessages, DomainEventPublisher<OrderCancelledEvent> orderCancelledEventDomainEventPublisher);
+    OrderCancelledEvent cancelOrderPayments(Order order, List<String> failureMessages);
 
     void cancelOrder(Order order, List<String> failureMessages);
 }

@@ -26,7 +26,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     private final TimeProviderService timeProviderService;
 
     @Override
-    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant, DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher) {
+    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
         validateRestaurant(restaurant);
         setOrderProductInformation(order, restaurant);
         order.validateOrder();
@@ -35,18 +35,16 @@ public class OrderDomainServiceImpl implements OrderDomainService {
         return OrderCreatedEvent.builder()
                 .order(order)
                 .ceratedAt(timeProviderService.now())
-                .orderCreatedEventDomainEventPublisher(orderCreatedEventDomainEventPublisher)
                 .build();
     }
 
     @Override
-    public OrderPaidEvent payOrder(Order order, DomainEventPublisher<OrderPaidEvent> orderPaidEventDomainEventPublisher) {
+    public OrderPaidEvent payOrder(Order order) {
         order.pay();
         logger.info("Order with id: {} is paid", order.getId().getValue());
         return OrderPaidEvent.builder()
                 .order(order)
                 .ceratedAt(timeProviderService.now())
-                .orderPaidEventDomainEventPublisher(orderPaidEventDomainEventPublisher)
                 .build();
     }
 
@@ -57,13 +55,12 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     }
 
     @Override
-    public OrderCancelledEvent cancelOrderPayments(final Order order, final List<String> failureMessages, DomainEventPublisher<OrderCancelledEvent> orderCancelledEventDomainEventPublisher) {
+    public OrderCancelledEvent cancelOrderPayments(final Order order, final List<String> failureMessages) {
         order.initCancel(failureMessages);
         logger.info("Order with id: {} is being cancelled", order.getId().getValue());
         return OrderCancelledEvent.builder()
                 .order(order)
                 .ceratedAt(timeProviderService.now())
-                .orderCancelledEventDomainEventPublisher(orderCancelledEventDomainEventPublisher)
                 .build();
     }
 

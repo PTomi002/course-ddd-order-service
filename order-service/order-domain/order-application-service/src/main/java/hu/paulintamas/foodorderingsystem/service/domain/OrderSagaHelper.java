@@ -1,6 +1,8 @@
 package hu.paulintamas.foodorderingsystem.service.domain;
 
 import hu.paulintamas.foodorderingsystem.domain.valueobject.OrderId;
+import hu.paulintamas.foodorderingsystem.domain.valueobject.OrderStatus;
+import hu.paulintamas.foodorderingsystem.saga.SagaStatus;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Order;
 import hu.paulintamas.foodorderingsystem.service.domain.exception.OrderNotFoundException;
 import hu.paulintamas.foodorderingsystem.service.domain.ports.output.repository.OrderRepository;
@@ -31,6 +33,16 @@ public class OrderSagaHelper {
 
     public Order save(Order order) {
         return orderRepository.save(order);
+    }
+
+    SagaStatus orderStatusToSagaStatus(OrderStatus orderStatus) {
+        return switch (orderStatus) {
+            case PAID -> SagaStatus.PROCESSING;
+            case APPROVED -> SagaStatus.SUCCEEDED;
+            case CANCELLING -> SagaStatus.COMPENSATING;
+            case CANCELLED -> SagaStatus.COMPENSATED;
+            default -> SagaStatus.STARTED;
+        };
     }
 
 }

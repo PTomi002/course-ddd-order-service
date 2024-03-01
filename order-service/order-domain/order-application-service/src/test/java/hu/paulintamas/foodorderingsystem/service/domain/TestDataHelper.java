@@ -25,6 +25,8 @@ public class TestDataHelper {
     static final Integer QUANTITY_1 = 1;
     static final Integer QUANTITY_3 = 3;
 
+
+    static final UUID SAGA_ID = UUID.fromString("bbaf8a38-c345-4c39-9861-310bf4c55af9");
     final static UUID CUSTOMER_ID_ONE = UUID.fromString("abaf8a38-c345-4c39-9861-310bf4c55af8");
     final static UUID RESTAURANT_ID_ONE = UUID.fromString("5b479216-e452-4d77-b6fd-46cab2702403");
     final static UUID PRODUCT_ID_ONE = UUID.fromString("2de9c2b9-d822-4516-94ec-c21c62bde0e6");

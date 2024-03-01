@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(":infrastructure::outbox")
     implementation project(":infrastructure::kafka:kafka-model")
     implementation project(":infrastructure::kafka:kafka-config-data")
 

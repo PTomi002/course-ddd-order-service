@@ -14,6 +14,9 @@ include 'infrastructure:kafka:kafka-config-data'
 // SAGA
 include 'infrastructure:saga'
 
+// OUTBOX
+include 'infrastructure:outbox'
+
 // CUSTOMER SERVICE
 include 'customer-service'
 

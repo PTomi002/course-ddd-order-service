@@ -17,9 +17,13 @@ class PaymentResponseMessageListenerImpl implements PaymentResponseMessageListen
 
     @Override
     public void paymentCompleted(PaymentResponse paymentResponse) {
-        var orderPaidEvent = orderPaymentSaga.process(paymentResponse);
-        log.info("Publishing OrderPaidEvent for order id: {}", paymentResponse.getOrderId());
+        orderPaymentSaga.process(paymentResponse);
+        log.info("Order Payment Saga process operation is completed for order id: {}", paymentResponse.getOrderId());
+/*
+        [KNOWLEDGE-OUTBOX]
+        We dont need to fire an event and publish it, instead with Outbox we save it in a local ACID transaction to the DB.
         orderPaidEvent.fire();
+*/
     }
 
     @Override
