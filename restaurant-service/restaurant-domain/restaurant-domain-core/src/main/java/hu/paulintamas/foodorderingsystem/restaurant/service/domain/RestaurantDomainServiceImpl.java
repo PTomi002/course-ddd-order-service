@@ -1,6 +1,5 @@
 package hu.paulintamas.foodorderingsystem.restaurant.service.domain;
 
-import hu.paulintamas.foodorderingsystem.domain.event.publisher.DomainEventPublisher;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.OrderApprovalStatus;
 import hu.paulintamas.foodorderingsystem.restaurant.service.domain.entity.Restaurant;
 import hu.paulintamas.foodorderingsystem.restaurant.service.domain.event.OrderApprovalEvent;
@@ -14,7 +13,7 @@ import java.util.List;
 @Slf4j
 public class RestaurantDomainServiceImpl implements RestaurantDomainService{
     @Override
-    public OrderApprovalEvent validateOrder(Restaurant restaurant, List<String> failureMessages, DomainEventPublisher<OrderApprovedEvent> orderApprovedEventDomainEventPublisher, DomainEventPublisher<OrderRejectedEvent> orderRejectedEventDomainEventPublisher) {
+    public OrderApprovalEvent validateOrder(Restaurant restaurant, List<String> failureMessages) {
         restaurant.validateOrder(failureMessages);
         log.info(
                 "Validating order with id: {}",
@@ -31,7 +30,6 @@ public class RestaurantDomainServiceImpl implements RestaurantDomainService{
                     .restaurantId(restaurant.getId())
                     .failureMessages(List.of())
                     .createdAt(ZonedDateTime.now())
-                    .orderApprovedEventDomainEventPublisher(orderApprovedEventDomainEventPublisher)
                     .build();
         } else {
             log.info(
@@ -44,7 +42,6 @@ public class RestaurantDomainServiceImpl implements RestaurantDomainService{
                     .restaurantId(restaurant.getId())
                     .failureMessages(failureMessages)
                     .createdAt(ZonedDateTime.now())
-                    .orderRejectedEventDomainEventPublisher(orderRejectedEventDomainEventPublisher)
                     .build();
         }
     }

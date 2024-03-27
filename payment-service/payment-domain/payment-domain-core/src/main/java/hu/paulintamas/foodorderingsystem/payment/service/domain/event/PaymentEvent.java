@@ -16,6 +16,6 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 public abstract class PaymentEvent implements DomainEvent<Payment> {
     private final Payment payment;
-    private final ZonedDateTime zonedDateTime;
+    private final ZonedDateTime createdAt;
     private final List<String> failureMessages;
 }

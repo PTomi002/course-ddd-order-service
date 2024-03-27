@@ -1,10 +1,7 @@
 package hu.paulintamas.foodorderingsystem.service.domain.outbox.model.payment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -17,6 +14,7 @@ import java.time.ZonedDateTime;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class OrderPaymentEventPayload {
     @JsonProperty
     private ZonedDateTime createdAt;

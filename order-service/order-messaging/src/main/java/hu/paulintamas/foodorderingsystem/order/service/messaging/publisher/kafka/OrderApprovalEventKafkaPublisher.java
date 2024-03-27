@@ -1,17 +1,13 @@
 package hu.paulintamas.foodorderingsystem.order.service.messaging.publisher.kafka;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import hu.paulintamas.foodorderingsystem.kafka.order.avro.model.PaymentRequestAvroModel;
 import hu.paulintamas.foodorderingsystem.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import hu.paulintamas.foodorderingsystem.kafka.producer.KafkaMessageHelper;
 import hu.paulintamas.foodorderingsystem.kafka.producer.service.KafkaProducer;
 import hu.paulintamas.foodorderingsystem.order.service.messaging.mapper.OrderMessagingDataMapper;
 import hu.paulintamas.foodorderingsystem.outbox.OutboxStatus;
 import hu.paulintamas.foodorderingsystem.service.domain.config.OrderServiceConfigData;
-import hu.paulintamas.foodorderingsystem.service.domain.exception.OrderDomainException;
 import hu.paulintamas.foodorderingsystem.service.domain.outbox.model.approval.OrderApprovalEventPayload;
 import hu.paulintamas.foodorderingsystem.service.domain.outbox.model.approval.OrderApprovalOutboxMessage;
-import hu.paulintamas.foodorderingsystem.service.domain.outbox.model.payment.OrderPaymentEventPayload;
 import hu.paulintamas.foodorderingsystem.service.domain.ports.output.messagepublisher.restaurantapproval.RestaurantApprovalRequestMessagePublisher;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +23,7 @@ public class OrderApprovalEventKafkaPublisher implements RestaurantApprovalReque
     private final KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer;
     private final OrderServiceConfigData orderServiceConfigData;
     private final KafkaMessageHelper kafkaMessageHelper;
+
     @Override
     public void publish(
             OrderApprovalOutboxMessage orderApprovalOutboxMessage,
@@ -41,27 +38,34 @@ public class OrderApprovalEventKafkaPublisher implements RestaurantApprovalReque
                 sagaId
         );
 
-        var restaurantApprovalRequestAvroModel = orderMessagingDataMapper.orderApprovalEventToRestaurantApprovalRequestAvroModel(sagaId, orderApprovalEventPayload);
+        try {
+            var restaurantApprovalRequestAvroModel = orderMessagingDataMapper.orderApprovalEventToRestaurantApprovalRequestAvroModel(sagaId, orderApprovalEventPayload);
 
-        kafkaProducer.send(
-                orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
-                sagaId, // they will be ordered by saga id, so the whole flow will be in one partition
-                restaurantApprovalRequestAvroModel,
-                kafkaMessageHelper.getKafkaCallback(
-                        orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
-                        restaurantApprovalRequestAvroModel,
-                        orderApprovalEventPayload.getOrderId(),
-                        "RestaurantApprovalRequestAvroModel",
-                        orderApprovalOutboxMessage,
-                        outboxCallback
-                )
-        );
+            kafkaProducer.send(
+                    orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
+                    sagaId, // they will be ordered by saga id, so the whole flow will be in one partition
+                    restaurantApprovalRequestAvroModel,
+                    kafkaMessageHelper.getKafkaCallback(
+                            orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
+                            restaurantApprovalRequestAvroModel,
+                            orderApprovalEventPayload.getOrderId(),
+                            "RestaurantApprovalRequestAvroModel",
+                            orderApprovalOutboxMessage,
+                            outboxCallback
+                    )
+            );
 
-        log.info(
-                "OrderApprovalOutboxMessage sent to kafka for order id: {} and saga id: {}",
-                orderApprovalEventPayload.getOrderId(),
-                sagaId
-        );
+            log.info(
+                    "OrderApprovalOutboxMessage sent to kafka for order id: {} and saga id: {}",
+                    orderApprovalEventPayload.getOrderId(),
+                    sagaId
+            );
+        } catch (Exception e) {
+            log.error(
+                    "Error while sending OrderApprovalEventPayload to kafka for order id: {} and saga id: {} and error: {}",
+                    orderApprovalEventPayload.getOrderId(), sagaId, e.getMessage()
+            );
+        }
     }
 
 }

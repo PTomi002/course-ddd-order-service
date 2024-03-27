@@ -50,11 +50,11 @@ public class Order extends AggregateRoot<OrderId> {
         if (OrderStatus.PENDING != orderStatus) {
             throw new OrderDomainException("order is not in the correct state for pay operation:  " + orderStatus + "!");
         }
-        orderStatus = OrderStatus.APPROVED;
+        orderStatus = OrderStatus.PAID;
     }
 
     public void approve() {
-        if (OrderStatus.APPROVED != orderStatus) {
+        if (OrderStatus.PAID != orderStatus) {
             throw new OrderDomainException("order is not in the correct state for approve operation:  " + orderStatus + "!");
         }
         orderStatus = OrderStatus.APPROVED;

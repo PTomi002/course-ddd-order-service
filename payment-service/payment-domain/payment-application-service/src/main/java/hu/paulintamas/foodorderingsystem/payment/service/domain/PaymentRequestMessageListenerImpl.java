@@ -16,14 +16,14 @@ public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageL
 
     @Override
     public void completePayment(PaymentRequest paymentRequest) {
-        var paymentEvent = paymentRequestHelper.persistPayment(paymentRequest);
-        fireEvent(paymentEvent);
+       paymentRequestHelper.persistPayment(paymentRequest);
+//        fireEvent(paymentEvent);
     }
 
     @Override
     public void cancelPayment(PaymentRequest paymentRequest) {
-        var paymentEvent = paymentRequestHelper.persistCancelPayment(paymentRequest);
-        fireEvent(paymentEvent);
+        paymentRequestHelper.persistCancelPayment(paymentRequest);
+//        fireEvent(paymentEvent);
     }
 
     private void fireEvent(PaymentEvent paymentEvent) {
@@ -32,7 +32,7 @@ public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageL
                 paymentEvent.getPayment().getId().getValue(),
                 paymentEvent.getPayment().getOrderId().getValue()
         );
-        paymentEvent.fire();
+//        paymentEvent.fire();
 
 //      [KNOWLEDGE-REFACTOR]: This would grow with each added event type -> refactor it with object-oriented principles.
 //        if (paymentEvent instanceof PaymentCompletedEvent) {

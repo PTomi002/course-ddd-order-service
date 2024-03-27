@@ -75,7 +75,8 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse> {
             - pessimistic locking: we should use it if we expect a lot of collision, bad for performance in our case
  */
         paymentOutboxHelper.save(getUpdatedPaymentOutboxMessage(outboxMessage, orderPaidDomainEvent.getOrder().getOrderStatus(), sagaStatus));
-        // restaurant_approval_outbox_saga_id index is unique so the second thread would get an exception for trying to insert
+        // restaurant_approval_outbox_saga_id index is unique so the second thread would get a unique index violation exception for trying to insert
+        // if we comment the restaurant_approval_outbox_saga_id index, we will get optimistic locking exception
         approvalOutboxHelper.saveApprovalOutboxMessage(
                 orderDataMapper.orderPaidEventToOrderApprovalEventPayload(orderPaidDomainEvent),
                 orderPaidDomainEvent.getOrder().getOrderStatus(),

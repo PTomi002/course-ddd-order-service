@@ -1,6 +1,5 @@
 package hu.paulintamas.foodorderingsystem.payment.service.domain;
 
-import hu.paulintamas.foodorderingsystem.domain.event.publisher.DomainEventPublisher;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.Money;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.PaymentStatus;
 import hu.paulintamas.foodorderingsystem.payment.service.domain.entity.CreditEntry;
@@ -14,7 +13,7 @@ import hu.paulintamas.foodorderingsystem.payment.service.domain.valueobject.Cred
 import hu.paulintamas.foodorderingsystem.payment.service.domain.valueobject.TransactionType;
 import lombok.extern.slf4j.Slf4j;
 
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,9 +25,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
             Payment payment,
             CreditEntry creditEntry,
             List<CreditHistory> creditHistories,
-            List<String> failureMessages,
-            DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher,
-            DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher
+            List<String> failureMessages
     ) {
         payment.validatePayment(failureMessages);
         payment.initializePayment();
@@ -42,18 +39,16 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
             payment.updateStatus(PaymentStatus.COMPLETED);
             return PaymentCompletedEvent.builder()
                     .payment(payment)
-                    .zonedDateTime(ZonedDateTime.now())
+                    .createdAt(ZonedDateTime.now())
                     .failureMessages(List.of())
-                    .paymentCompletedEventDomainEventPublisher(paymentCompletedEventDomainEventPublisher)
                     .build();
         } else {
             log.info("Payment initiation is failed for order: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.FAILED);
             return PaymentFailedEvent.builder()
                     .payment(payment)
-                    .zonedDateTime(ZonedDateTime.now())
+                    .createdAt(ZonedDateTime.now())
                     .failureMessages(failureMessages)
-                    .paymentFailedEventDomainEventPublisher(paymentFailedEventDomainEventPublisher)
                     .build();
         }
     }
@@ -63,9 +58,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
             Payment payment,
             CreditEntry creditEntry,
             List<CreditHistory> creditHistories,
-            List<String> failureMessages,
-            DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher,
-            DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher
+            List<String> failureMessages
     ) {
         payment.validatePayment(failureMessages);
         addCreditEntry(payment, creditEntry);
@@ -76,18 +69,16 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
             payment.updateStatus(PaymentStatus.CANCELLED);
             return PaymentCancelledEvent.builder()
                     .payment(payment)
-                    .zonedDateTime(ZonedDateTime.now())
+                    .createdAt(ZonedDateTime.now())
                     .failureMessages(List.of())
-                    .paymentCancelledEventDomainEventPublisher(paymentCancelledEventDomainEventPublisher)
                     .build();
         } else {
             log.info("Payment cancel is failed for order: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.FAILED);
             return PaymentFailedEvent.builder()
                     .payment(payment)
-                    .zonedDateTime(ZonedDateTime.now())
+                    .createdAt(ZonedDateTime.now())
                     .failureMessages(failureMessages)
-                    .paymentFailedEventDomainEventPublisher(paymentFailedEventDomainEventPublisher)
                     .build();
         }
     }

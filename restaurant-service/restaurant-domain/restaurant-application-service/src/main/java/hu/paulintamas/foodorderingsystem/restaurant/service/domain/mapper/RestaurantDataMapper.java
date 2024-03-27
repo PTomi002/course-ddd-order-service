@@ -8,6 +8,8 @@ import hu.paulintamas.foodorderingsystem.restaurant.service.domain.dto.Restauran
 import hu.paulintamas.foodorderingsystem.restaurant.service.domain.entity.OrderDetail;
 import hu.paulintamas.foodorderingsystem.restaurant.service.domain.entity.Product;
 import hu.paulintamas.foodorderingsystem.restaurant.service.domain.entity.Restaurant;
+import hu.paulintamas.foodorderingsystem.restaurant.service.domain.event.OrderApprovalEvent;
+import hu.paulintamas.foodorderingsystem.restaurant.service.domain.outbox.model.OrderEventPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -37,6 +39,16 @@ public class RestaurantDataMapper {
                                 .orderStatus(OrderStatus.valueOf(restaurantApprovalRequest.getRestaurantOrderStatus().toString()))
                                 .build()
                 )
+                .build();
+    }
+
+    public OrderEventPayload orderApprovalEventToOrderEventPayload(OrderApprovalEvent orderApprovalEvent) {
+        return OrderEventPayload.builder()
+                .orderId(orderApprovalEvent.getOrderApproval().getOrderId().getValue().toString())
+                .restaurantId(orderApprovalEvent.getRestaurantId().getValue().toString())
+                .orderApprovalStatus(orderApprovalEvent.getOrderApproval().getOrderApprovalStatus().name())
+                .createdAt(orderApprovalEvent.getCreatedAt())
+                .failureMessages(orderApprovalEvent.getFailureMessages())
                 .build();
     }
 

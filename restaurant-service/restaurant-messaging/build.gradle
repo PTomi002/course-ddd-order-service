@@ -1,6 +1,6 @@
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
-
+    implementation 'org.postgresql:postgresql:42.7.1'
     api project(':infrastructure:kafka:kafka-consumer')
     api project(':infrastructure:kafka:kafka-model')
     api project(':infrastructure:kafka:kafka-producer')

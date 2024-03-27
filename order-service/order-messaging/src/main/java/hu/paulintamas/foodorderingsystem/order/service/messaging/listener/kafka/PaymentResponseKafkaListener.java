@@ -49,7 +49,7 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
                     paymentResponseMessageListener.paymentCancelled(orderMessagingDataMapper.paymentResponseAvroModelToPaymentResponse(message));
                 }
             } catch (OptimisticLockingFailureException e) {
-                // NO-OP: we wont retry it as it is a result of a duplicate message passed idempotency check, log and ignore it
+                // NO-OP: we wont retry it as it is a result of a duplicate message passed idempotency check (another thread finished the work), log and ignore it
                 log.error("Caught optimistic licking exception!", e);
             } catch (OrderNotFoundException e) {
                 // NO-OP: we wont find the Order for the subsequent tries
