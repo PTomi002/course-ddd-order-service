@@ -5,20 +5,23 @@ include 'common:common-domain'
 include 'common:common-application'
 include 'common:common-dataaccess'
 
-// INFRA
+// INFRASTRUCTURE
 include 'infrastructure:kafka:kafka-consumer'
 include 'infrastructure:kafka:kafka-model'
 include 'infrastructure:kafka:kafka-producer'
 include 'infrastructure:kafka:kafka-config-data'
 
-// SAGA
+// PATTERNS
 include 'infrastructure:saga'
-
-// OUTBOX
 include 'infrastructure:outbox'
 
 // CUSTOMER SERVICE
-include 'customer-service'
+include 'customer-service:customer-dataaccess'
+include 'customer-service:customer-application'
+include 'customer-service:customer-messaging'
+include 'customer-service:customer-container'
+include 'customer-service:customer-domain:customer-application-service'
+include 'customer-service:customer-domain:customer-domain-core'
 
 // PAYMENT SERVICE
 include 'payment-service:payment-dataaccess'
@@ -27,7 +30,7 @@ include 'payment-service:payment-container'
 include 'payment-service:payment-domain:payment-application-service'
 include 'payment-service:payment-domain:payment-domain-core'
 
-// PAYMENT SERVICE
+// RESTAURANT SERVICE
 include 'restaurant-service:restaurant-dataaccess'
 include 'restaurant-service:restaurant-messaging'
 include 'restaurant-service:restaurant-container'

@@ -1,0 +1,49 @@
+server:
+  port: 8182
+
+logging:
+  level:
+    hu.paulintamas.foodorderingsystem: DEBUG
+
+customer-service:
+  customer-topic-name: customer
+
+spring:
+  jpa:
+    open-in-view: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=customer&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+  sql:
+    init:
+      mode: ALWAYS
+      schema-locations: classpath:init-schema.sql
+      data-locations: classpath:init-data.sql
+
+kafka-config:
+  bootstrap-servers: localhost:9092
+  schema-registry-url-key: schema.registry.url
+  schema-registry-url: http://localhost:8600
+
+kafka-producer-config:
+  key-serializer-class: org.apache.kafka.common.serialization.StringSerializer
+  value-serializer-class: io.confluent.kafka.serializers.KafkaAvroSerializer
+  # Good balance on speed, CPU and network utilization
+  compression-type: snappy
+  # Wait for ack from each broker
+  acks: all
+  # 16 kilobyte
+  batch-size: 16384
+  batch-size-boost-factor: 100
+  # Add a delay on producer, increases the batch size
+  linger-ms: 5
+  request-timeout-ms: 60000
+  retry-count: 5

@@ -3,6 +3,7 @@ package hu.paulintamas.foodorderingsystem.order.service.dataaccess.customer.mapp
 import hu.paulintamas.foodorderingsystem.domain.valueobject.CustomerId;
 import hu.paulintamas.foodorderingsystem.order.service.dataaccess.customer.entity.CustomerEntity;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Customer;
+import hu.paulintamas.foodorderingsystem.service.domain.ports.output.messagepublisher.customer.CustomerMessageListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,4 +13,14 @@ public class CustomerDataAccessMapper {
                 .id(CustomerId.builder().value(customerEntity.getId()).build())
                 .build();
     }
+
+    public CustomerEntity customerToCustomerEntity(Customer customer) {
+        return CustomerEntity.builder()
+                .username(customer.getUsername())
+                .lastName(customer.getLastName())
+                .firstName(customer.getFirstName())
+                .id(customer.getId().getValue())
+                .build();
+    }
+
 }

@@ -4,11 +4,9 @@ import hu.paulintamas.foodorderingsystem.domain.valueobject.*;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.CreateOrderCommand;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.CreateOrderResponse;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.create.OrderAddress;
+import hu.paulintamas.foodorderingsystem.service.domain.dto.message.CustomerModel;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.track.TrackOrderResponse;
-import hu.paulintamas.foodorderingsystem.service.domain.entity.Order;
-import hu.paulintamas.foodorderingsystem.service.domain.entity.OrderItem;
-import hu.paulintamas.foodorderingsystem.service.domain.entity.Product;
-import hu.paulintamas.foodorderingsystem.service.domain.entity.Restaurant;
+import hu.paulintamas.foodorderingsystem.service.domain.entity.*;
 import hu.paulintamas.foodorderingsystem.service.domain.event.OrderCancelledEvent;
 import hu.paulintamas.foodorderingsystem.service.domain.event.OrderCreatedEvent;
 import hu.paulintamas.foodorderingsystem.service.domain.event.OrderPaidEvent;
@@ -31,6 +29,15 @@ import java.util.stream.Collectors;
  */
 @Component
 public class OrderDataMapper {
+
+    public Customer customerModelToCustomer(CustomerModel customerModel) {
+        return Customer.builder()
+                .id(CustomerId.builder().value(UUID.fromString(customerModel.getId())).build())
+                .username(customerModel.getUsername())
+                .lastName(customerModel.getLastName())
+                .firstName(customerModel.getFirstName())
+                .build();
+    }
 
     public Restaurant createOrderCommandToRestaurant(CreateOrderCommand createOrderCommand) {
         return Restaurant.builder()

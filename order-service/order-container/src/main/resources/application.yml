@@ -6,6 +6,7 @@ logging:
     hu.paulintamas.foodorderingsystem: DEBUG
 
 order-service:
+  customer-topic-name: customer
   payment-request-topic-name: payment-request
   payment-response-topic-name: payment-response
   restaurant-approval-request-topic-name: restaurant-approval-request
@@ -57,6 +58,7 @@ kafka-consumer-config:
   value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
   payment-consumer-group-id: payment-topic-consumer
   restaurant-approval-consumer-group-id: restaurant-approval-topic-consumer
+  customer-group-id: customer-consumer
   auto-offset-reset: earliest
   specific-avro-reader-key: specific.avro.reader
   specific-avro-reader: true

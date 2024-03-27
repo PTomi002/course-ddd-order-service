@@ -3,6 +3,7 @@ package hu.paulintamas.foodorderingsystem.order.service.messaging.mapper;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.OrderApprovalStatus;
 import hu.paulintamas.foodorderingsystem.domain.valueobject.PaymentStatus;
 import hu.paulintamas.foodorderingsystem.kafka.order.avro.model.*;
+import hu.paulintamas.foodorderingsystem.service.domain.dto.message.CustomerModel;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.message.PaymentResponse;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.message.RestaurantApprovalResponse;
 import hu.paulintamas.foodorderingsystem.service.domain.outbox.model.approval.OrderApprovalEventPayload;
@@ -14,6 +15,15 @@ import java.util.stream.Collectors;
 
 @Component
 public class OrderMessagingDataMapper {
+
+    public CustomerModel customerAvroModelToCustomerModel(CustomerAvroModel customerAvroModel) {
+        return CustomerModel.builder()
+                .firstName(customerAvroModel.getFirstName())
+                .lastName(customerAvroModel.getLastName())
+                .username(customerAvroModel.getUsername())
+                .id(customerAvroModel.getId().toString())
+                .build();
+    }
 
     public PaymentResponse paymentResponseAvroModelToPaymentResponse(PaymentResponseAvroModel paymentResponseAvroModel) {
         return PaymentResponse.builder()
