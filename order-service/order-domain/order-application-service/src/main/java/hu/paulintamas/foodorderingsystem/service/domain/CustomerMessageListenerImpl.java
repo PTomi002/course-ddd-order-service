@@ -3,7 +3,7 @@ package hu.paulintamas.foodorderingsystem.service.domain;
 import hu.paulintamas.foodorderingsystem.service.domain.dto.message.CustomerModel;
 import hu.paulintamas.foodorderingsystem.service.domain.exception.OrderDomainException;
 import hu.paulintamas.foodorderingsystem.service.domain.mapper.OrderDataMapper;
-import hu.paulintamas.foodorderingsystem.service.domain.ports.output.messagepublisher.customer.CustomerMessageListener;
+import hu.paulintamas.foodorderingsystem.service.domain.ports.input.messagelistener.customer.CustomerMessageListener;
 import hu.paulintamas.foodorderingsystem.service.domain.ports.output.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -3,7 +3,6 @@ package hu.paulintamas.foodorderingsystem.order.service.dataaccess.customer.mapp
 import hu.paulintamas.foodorderingsystem.domain.valueobject.CustomerId;
 import hu.paulintamas.foodorderingsystem.order.service.dataaccess.customer.entity.CustomerEntity;
 import hu.paulintamas.foodorderingsystem.service.domain.entity.Customer;
-import hu.paulintamas.foodorderingsystem.service.domain.ports.output.messagepublisher.customer.CustomerMessageListener;
 import org.springframework.stereotype.Component;
 
 @Component

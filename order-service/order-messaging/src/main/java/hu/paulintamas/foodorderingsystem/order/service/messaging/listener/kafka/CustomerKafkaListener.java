@@ -3,7 +3,7 @@ package hu.paulintamas.foodorderingsystem.order.service.messaging.listener.kafka
 import hu.paulintamas.foodorderingsystem.kafka.consumer.service.KafkaConsumer;
 import hu.paulintamas.foodorderingsystem.kafka.order.avro.model.CustomerAvroModel;
 import hu.paulintamas.foodorderingsystem.order.service.messaging.mapper.OrderMessagingDataMapper;
-import hu.paulintamas.foodorderingsystem.service.domain.ports.output.messagepublisher.customer.CustomerMessageListener;
+import hu.paulintamas.foodorderingsystem.service.domain.ports.input.messagelistener.customer.CustomerMessageListener;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -22,6 +22,8 @@ public class CustomerKafkaListener implements KafkaConsumer<CustomerAvroModel> {
     private final CustomerMessageListener customerMessageListener;
     private final OrderMessagingDataMapper orderMessagingDataMapper;
 
+    // [KNOWLEDGE] CQRS
+    // Read customer from event bus.
     @Override
     @KafkaListener(id = "${kafka-consumer-config.customer-group-id}", topics = "${order-service.customer-topic-name}")
     public void receive(
